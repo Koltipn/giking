@@ -349,7 +349,11 @@ class GameFragment : Fragment() {
             .setDuration(duration)
             .setInterpolator(LinearInterpolator())
             .withEndAction {
-                fieldView.removeView(bugView)
+                if (!isRunning) {
+                    fieldView.removeView(bugView)
+                } else {
+                    animateBug(bugView, bugType)
+                }
             }
             .start()
     }
